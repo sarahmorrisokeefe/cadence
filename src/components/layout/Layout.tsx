@@ -126,7 +126,7 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
           href="https://ko-fi.com/sarahmorrisokeefe"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-1 inline-block text-xs text-sky-500 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-400 transition-colors"
+          className="mt-1 inline-block text-xs text-sky-500 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-600 transition-colors"
         >
           ☕ Support this app on Ko-fi
         </a>
