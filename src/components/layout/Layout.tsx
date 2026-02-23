@@ -122,6 +122,14 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
             Sarah O'Keefe
           </a>
         </p>
+        <a
+          href="https://ko-fi.com/sarahmorrisokeefe"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 inline-block text-xs text-slate-400 dark:text-slate-500 hover:text-sky-500 dark:hover:text-sky-400 transition-colors"
+        >
+          ☕ Support this app on Ko-fi
+        </a>
       </footer>
 
       {!hideNav && <BottomNav />}
