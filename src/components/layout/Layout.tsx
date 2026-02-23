@@ -117,7 +117,7 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
             href="https://okeefesarah.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sky-500 dark:text-sky-400 hover:text-sky-500 dark:hover:text-sky-400 transition-colors"
+            className="text-sky-500 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-600 transition-colors"
           >
             Sarah O'Keefe
           </a>
