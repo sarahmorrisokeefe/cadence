@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Courses } from './pages/Courses'
@@ -74,6 +75,7 @@ export default function App() {
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
+      <SpeedInsights />
     </BrowserRouter>
   )
 }
