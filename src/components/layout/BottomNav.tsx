@@ -27,7 +27,7 @@ export function BottomNav() {
               key={tab.id}
               onClick={() => navigate(tab.path)}
               className={`
-                flex-1 flex flex-col items-center justify-center gap-0.5
+                relative flex-1 flex flex-col items-center justify-center gap-0.5
                 min-h-[56px] py-2 px-1
                 transition-colors duration-150
                 touch-manipulation select-none
