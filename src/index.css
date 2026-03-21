@@ -12,6 +12,16 @@
     @apply bg-sky-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     overscroll-behavior: none;
+    /* Native-feel: disable text selection and callout on long-press */
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  /* Re-enable text selection for inputs and textareas */
+  input, textarea, [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
   }
 
   * {

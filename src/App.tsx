@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Capacitor } from '@capacitor/core'
+import { StatusBar, Style } from '@capacitor/status-bar'
 import { Home } from './pages/Home'
 import { Courses } from './pages/Courses'
 import { CourseDetail } from './pages/CourseDetail'
@@ -44,7 +46,13 @@ function ProgressSyncEffect() {
 
 function AppRoutes() {
   // Initialize dark mode on mount
-  useDarkMode()
+  const { isDark } = useDarkMode()
+
+  // Sync iOS status bar style with dark mode
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return
+    StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light }).catch(() => {})
+  }, [isDark])
 
   return (
     <>

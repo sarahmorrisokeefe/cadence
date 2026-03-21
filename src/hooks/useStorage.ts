@@ -1,74 +1,75 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import { Preferences } from '@capacitor/preferences'
+import { Capacitor } from '@capacitor/core'
+
+const isNative = Capacitor.isNativePlatform()
 
 /**
- * Abstraction over localStorage — swap for Capacitor's Preferences plugin in the future.
- * All read/write operations go through this hook so the storage layer is isolated.
+ * Cross-platform storage abstraction.
+ * Uses Capacitor Preferences on native iOS/Android, localStorage on web.
+ * All methods are async.
  */
-export function useStorage<T>(key: string, initialValue: T) {
-  const readValue = useCallback((): T => {
-    try {
-      const item = localStorage.getItem(key)
-      return item ? (JSON.parse(item) as T) : initialValue
-    } catch {
-      return initialValue
+export const storage = {
+  get: async (key: string) => {
+    if (isNative) {
+      const { value } = await Preferences.get({ key })
+      return value ? JSON.parse(value) : null
     }
-  }, [key, initialValue])
-
-  const [storedValue, setStoredValue] = useState<T>(readValue)
-
-  const setValue = useCallback(
-    (value: T | ((prev: T) => T)) => {
-      try {
-        const valueToStore =
-          typeof value === 'function'
-            ? (value as (prev: T) => T)(storedValue)
-            : value
-        setStoredValue(valueToStore)
-        localStorage.setItem(key, JSON.stringify(valueToStore))
-      } catch {
-        // Silently fail — Capacitor swap point
-      }
-    },
-    [key, storedValue]
-  )
-
-  const removeValue = useCallback(() => {
-    try {
+    const item = localStorage.getItem(key)
+    return item ? JSON.parse(item) : null
+  },
+  set: async (key: string, value: unknown) => {
+    if (isNative) {
+      await Preferences.set({ key, value: JSON.stringify(value) })
+    } else {
+      localStorage.setItem(key, JSON.stringify(value))
+    }
+  },
+  remove: async (key: string) => {
+    if (isNative) {
+      await Preferences.remove({ key })
+    } else {
       localStorage.removeItem(key)
-      setStoredValue(initialValue)
-    } catch {
-      // Silently fail
     }
-  }, [key, initialValue])
-
-  return [storedValue, setValue, removeValue] as const
+  },
 }
 
 /**
- * Simple one-shot storage helpers (not React state).
- * Useful for reading/writing outside of component lifecycle.
+ * React hook backed by the cross-platform storage abstraction.
+ * Initializes with initialValue, then loads persisted value asynchronously on mount.
+ * The splash screen covers any brief flash before async load completes on native.
  */
-export const storage = {
-  get<T>(key: string, fallback: T): T {
-    try {
-      const item = localStorage.getItem(key)
-      return item ? (JSON.parse(item) as T) : fallback
-    } catch {
-      return fallback
-    }
-  },
-  set<T>(key: string, value: T): void {
-    try {
-      localStorage.setItem(key, JSON.stringify(value))
-    } catch {
-      // Silently fail
-    }
-  },
-  remove(key: string): void {
-    try {
-      localStorage.removeItem(key)
-    } catch {
-      // Silently fail
-    }
-  },
+export function useStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(initialValue)
+
+  // Async load on mount
+  useEffect(() => {
+    storage.get(key).then((value) => {
+      if (value !== null) {
+        setStoredValue(value as T)
+      }
+    })
+  }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const setValue = useCallback(
+    (value: T | ((prev: T) => T)) => {
+      setStoredValue((prev) => {
+        const valueToStore =
+          typeof value === 'function'
+            ? (value as (prev: T) => T)(prev)
+            : value
+        // Fire-and-forget async write
+        void storage.set(key, valueToStore)
+        return valueToStore
+      })
+    },
+    [key]
+  )
+
+  const removeValue = useCallback(() => {
+    void storage.remove(key)
+    setStoredValue(initialValue)
+  }, [key, initialValue]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return [storedValue, setValue, removeValue] as const
 }
