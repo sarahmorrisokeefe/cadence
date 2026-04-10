@@ -48,10 +48,17 @@ function AppRoutes() {
   // Initialize dark mode on mount
   const { isDark } = useDarkMode()
 
+  // Add platform class so CSS can target native-only styles
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      document.body.classList.add('cap-native')
+    }
+  }, [])
+
   // Sync iOS status bar style with dark mode
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return
-    StatusBar.setStyle({ style: isDark ? Style.Dark : Style.Light }).catch(() => {})
+    StatusBar.setStyle({ style: isDark ? Style.Light : Style.Dark }).catch(() => {})
   }, [isDark])
 
   return (

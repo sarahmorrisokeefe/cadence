@@ -40,13 +40,28 @@ export const storage = {
  * The splash screen covers any brief flash before async load completes on native.
  */
 export function useStorage<T>(key: string, initialValue: T) {
-  const [storedValue, setStoredValue] = useState<T>(initialValue)
+  // On web: seed synchronously from localStorage (no flash).
+  // On native: start with initialValue; async load below (splash screen covers the flash).
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (isNative) return initialValue
+    try {
+      const item = localStorage.getItem(key)
+      return item ? (JSON.parse(item) as T) : initialValue
+    } catch {
+      return initialValue
+    }
+  })
 
-  // Async load on mount
+  // On native: async-load the persisted value after mount.
   useEffect(() => {
-    storage.get(key).then((value) => {
+    if (!isNative) return
+    Preferences.get({ key }).then(({ value }) => {
       if (value !== null) {
-        setStoredValue(value as T)
+        try {
+          setStoredValue(JSON.parse(value) as T)
+        } catch {
+          // Malformed data — keep initialValue
+        }
       }
     })
   }, [key]) // eslint-disable-line react-hooks/exhaustive-deps
