@@ -1,4 +1,9 @@
 import type { Course } from '../types'
+import { notationBasicsModules } from './notationBasics'
+import { rhythmAndMeterModules } from './rhythmAndMeter'
+import { scalesAndKeysModules } from './scalesAndKeys'
+import { intervalsModules } from './intervals'
+import { chordsModules } from './chords'
 
 export const COURSES: Course[] = [
   {
@@ -10,7 +15,7 @@ export const COURSES: Course[] = [
     icon: '🎼',
     color: 'cadence-800',
     bgGradient: 'bg-gradient-to-br from-cadence-800 to-cadence-600',
-    modules: [],
+    modules: notationBasicsModules,
     testConfig: { questionCount: 15, timeLimit: 10, passingScore: 70 },
   },
   {
@@ -22,7 +27,7 @@ export const COURSES: Course[] = [
     icon: '🥁',
     color: 'copper-500',
     bgGradient: 'bg-gradient-to-br from-copper-500 to-copper-700',
-    modules: [],
+    modules: rhythmAndMeterModules,
     testConfig: { questionCount: 15, timeLimit: 10, passingScore: 70 },
   },
   {
@@ -34,7 +39,7 @@ export const COURSES: Course[] = [
     icon: '🎹',
     color: 'cadence-600',
     bgGradient: 'bg-gradient-to-br from-cadence-600 to-cadence-800',
-    modules: [],
+    modules: scalesAndKeysModules,
     testConfig: { questionCount: 20, timeLimit: 15, passingScore: 70 },
   },
   {
@@ -46,7 +51,7 @@ export const COURSES: Course[] = [
     icon: '📏',
     color: 'copper-600',
     bgGradient: 'bg-gradient-to-br from-copper-600 to-copper-500',
-    modules: [],
+    modules: intervalsModules,
     testConfig: { questionCount: 20, timeLimit: 15, passingScore: 70 },
   },
   {
@@ -58,7 +63,7 @@ export const COURSES: Course[] = [
     icon: '🎸',
     color: 'cadence-700',
     bgGradient: 'bg-gradient-to-br from-cadence-700 to-cadence-900',
-    modules: [],
+    modules: chordsModules,
     testConfig: { questionCount: 20, timeLimit: 15, passingScore: 70 },
   },
 ]
