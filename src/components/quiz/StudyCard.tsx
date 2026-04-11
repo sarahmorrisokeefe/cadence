@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import type { LessonSlide } from '../../types'
-import { ReferenceLink } from '../ui/ReferenceLink'
 
 interface StudyCardProps {
   slide: LessonSlide
@@ -33,7 +32,7 @@ export function StudyCard({
       >
         {/* Header row: badge + counter + skip */}
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-900/30 px-2.5 py-1 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cadence-700 dark:text-cadence-300 bg-cadence-50 dark:bg-cadence-900/30 px-2.5 py-1 rounded-full">
             📖 Study
           </span>
 
@@ -43,7 +42,7 @@ export function StudyCard({
             </span>
             <button
               onClick={onSkip}
-              className="text-xs text-slate-400 dark:text-slate-500 hover:text-sky-500 dark:hover:text-sky-400 font-medium transition-colors touch-manipulation"
+              className="text-xs text-slate-400 dark:text-slate-500 hover:text-cadence-800 dark:hover:text-cadence-300 font-medium transition-colors touch-manipulation"
             >
               Skip to Quiz →
             </button>
@@ -84,13 +83,6 @@ export function StudyCard({
             </div>
           )}
 
-          {/* Reference */}
-          {slide.reference && (
-            <ReferenceLink
-              reference={slide.reference}
-              className="text-slate-400 dark:text-slate-500"
-            />
-          )}
         </div>
 
         {/* Dot progress */}
@@ -100,9 +92,9 @@ export function StudyCard({
               key={i}
               className={`rounded-full transition-all duration-300 ${
                 i === slideIndex
-                  ? 'w-4 h-2 bg-sky-500'
+                  ? 'w-4 h-2 bg-cadence-800'
                   : i < slideIndex
-                  ? 'w-2 h-2 bg-sky-300 dark:bg-sky-700'
+                  ? 'w-2 h-2 bg-cadence-300 dark:bg-cadence-700'
                   : 'w-2 h-2 bg-slate-200 dark:bg-slate-700'
               }`}
             />
@@ -120,7 +112,7 @@ export function StudyCard({
           </button>
           <button
             onClick={onNext}
-            className="flex-[2] py-3 rounded-xl bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white text-sm font-bold transition-colors touch-manipulation focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+            className="flex-[2] py-3 rounded-xl bg-cadence-800 hover:bg-cadence-700 active:bg-cadence-600 text-white text-sm font-bold transition-colors touch-manipulation focus:outline-none focus:ring-2 focus:ring-cadence-400 focus:ring-offset-2"
           >
             {slideIndex === totalSlides - 1 ? 'Finish Review →' : 'Next →'}
           </button>

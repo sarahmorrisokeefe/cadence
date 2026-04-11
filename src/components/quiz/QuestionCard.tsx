@@ -23,9 +23,9 @@ export function QuestionCard({
   const getOptionStyle = (index: number) => {
     if (!showFeedback) {
       if (selectedAnswer === index) {
-        return 'border-sky-500 bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300'
+        return 'border-cadence-800 bg-cadence-50 dark:bg-cadence-900/30 text-cadence-800 dark:text-cadence-300'
       }
-      return 'border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-sky-300 dark:hover:border-sky-600 hover:bg-sky-50/50 dark:hover:bg-sky-900/20 active:scale-[0.98]'
+      return 'border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-cadence-300 dark:hover:border-cadence-700 hover:bg-cadence-50/50 dark:hover:bg-cadence-900/20 active:scale-[0.98]'
     }
     if (index === question.correctAnswer) {
       return 'border-green-500 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300'
@@ -73,7 +73,7 @@ export function QuestionCard({
               className={`
                 flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold
                 ${!showFeedback && selectedAnswer === index
-                  ? 'bg-sky-500 text-white'
+                  ? 'bg-cadence-800 text-white'
                   : showFeedback && index === question.correctAnswer
                   ? 'bg-green-500 text-white'
                   : showFeedback && selectedAnswer === index && index !== question.correctAnswer
