@@ -73,7 +73,6 @@ function AppRoutes() {
         <Route path="/learn/:courseId/modules/:moduleId" element={<ModuleDetail />} />
         <Route path="/learn/:courseId/modules/:moduleId/lessons/:lessonId" element={<Lesson />} />
         <Route path="/practice" element={<PracticeTest />} />
-        <Route path="/practice/:courseId" element={<PracticeTest />} />
         <Route path="/review" element={<WeakAreas />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/auth" element={<Auth />} />

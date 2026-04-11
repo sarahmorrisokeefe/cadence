@@ -51,7 +51,7 @@ export function CourseDetail() {
 
         {/* Practice Test CTA */}
         <button
-          onClick={() => navigate(`/practice/${course.id}`)}
+          onClick={() => navigate('/practice')}
           className="w-full bg-white dark:bg-slate-800 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl p-4 flex items-center gap-3 touch-manipulation active:scale-[0.98] transition-transform"
         >
           <span className="text-3xl">📝</span>
