@@ -5,7 +5,7 @@ import { ProgressBar } from '../components/ui/ProgressBar'
 import { Badge } from '../components/ui/Badge'
 import { COURSES, getCourseById } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { getCourseCompletion, getModuleCompletion, isModuleLocked } from '../utils'
+import { getCourseCompletion, getModuleCompletion } from '../utils'
 
 export function CourseDetail() {
   const { courseId } = useParams<{ courseId: string }>()
@@ -70,7 +70,6 @@ export function CourseDetail() {
         <h2 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Modules</h2>
         <div className="space-y-3">
           {course.modules.map((mod, idx) => {
-            const locked = isModuleLocked(course, idx, progress)
             const modCompletion = getModuleCompletion(course, mod, progress)
             const completedLessons = mod.lessons.filter(
               (l) => progress.courses[course.id]?.modules[mod.id]?.lessonsProgress[l.id]?.completed
@@ -84,21 +83,17 @@ export function CourseDetail() {
                 transition={{ delay: idx * 0.04 }}
               >
                 <div
-                  onClick={() => !locked && navigate(`/learn/${course.id}/modules/${mod.id}`)}
-                  className={`
-                    bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4
-                    ${locked ? 'opacity-60' : 'cursor-pointer active:scale-[0.98] transition-transform touch-manipulation'}
-                  `}
+                  onClick={() => navigate(`/learn/${course.id}/modules/${mod.id}`)}
+                  className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4 cursor-pointer active:scale-[0.98] transition-transform touch-manipulation"
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${locked ? 'bg-slate-100 dark:bg-slate-700' : course.bgGradient}`}>
-                      {locked ? '🔒' : mod.icon}
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${course.bgGradient}`}>
+                      {mod.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <p className="font-bold text-slate-900 dark:text-white text-sm">{mod.title}</p>
                         {modCompletion === 100 && <Badge variant="green">✓ Done</Badge>}
-                        {locked && <Badge variant="slate">Locked</Badge>}
                       </div>
                       <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{mod.description}</p>
                       <div className="flex items-center gap-2 mt-2">
