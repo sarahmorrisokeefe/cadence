@@ -86,7 +86,7 @@ export function PracticeTest() {
     }
     completeTest(testResult)
     if (passed) {
-      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 }, colors: ['#0ea5e9', '#22c55e', '#f59e0b'] })
+      confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 }, colors: ['#2d3161', '#22c55e', '#f59e0b'] })
     }
   }
 
@@ -195,7 +195,7 @@ export function PracticeTest() {
     // Review mode
     return (
       <Layout title="Review Answers" backPath="#" hideNav>
-        <button onClick={() => setReviewMode(false)} className="mb-4 text-sky-500 text-sm font-semibold touch-manipulation">
+        <button onClick={() => setReviewMode(false)} className="mb-4 text-cadence-800 text-sm font-semibold touch-manipulation">
           ← Back to Results
         </button>
         <div className="space-y-4">
@@ -257,11 +257,11 @@ export function PracticeTest() {
               w-full text-left flex items-center gap-3 p-3.5 rounded-xl border-2 min-h-[52px]
               font-medium text-sm transition-all duration-150 touch-manipulation
               ${selected === i
-                ? 'border-sky-500 bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300'
-                : 'border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-sky-300 active:scale-[0.98]'}
+                ? 'border-cadence-800 bg-cadence-50 dark:bg-cadence-900/30 text-cadence-800 dark:text-cadence-300'
+                : 'border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-cadence-300 active:scale-[0.98]'}
             `}
           >
-            <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${selected === i ? 'bg-sky-500 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500'}`}>
+            <span className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${selected === i ? 'bg-cadence-800 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500'}`}>
               {['A','B','C','D'][i]}
             </span>
             <span className="leading-snug">{opt}</span>

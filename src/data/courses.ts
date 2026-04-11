@@ -26,8 +26,8 @@ export const COURSES: Course[] = [
     shortTitle: 'PPL',
     description: 'FAA PAR written exam — all topics for the private pilot certificate',
     icon: '🛩️',
-    color: 'bg-sky-500',
-    bgGradient: 'bg-gradient-to-r from-sky-500 to-blue-600',
+    color: 'bg-cadence-800',
+    bgGradient: 'bg-gradient-to-r from-cadence-800 to-cadence-600',
     modules: pplModules,
     testConfig: {
       questionCount: 60,

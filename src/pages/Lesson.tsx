@@ -70,7 +70,7 @@ export function Lesson() {
     })
     xpRef.current = xp
     if (results.score === 100) {
-      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#0ea5e9', '#22c55e', '#f59e0b'] })
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#2d3161', '#22c55e', '#f59e0b'] })
     }
   }
 
@@ -150,7 +150,7 @@ export function Lesson() {
               <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" className="text-slate-200 dark:text-slate-700" strokeWidth="8" />
               <circle
                 cx="50" cy="50" r="40" fill="none"
-                stroke={isPerfect ? '#22c55e' : passed ? '#0ea5e9' : '#f59e0b'}
+                stroke={isPerfect ? '#22c55e' : passed ? '#2d3161' : '#f59e0b'}
                 strokeWidth="8"
                 strokeDasharray={`${2 * Math.PI * 40}`}
                 strokeDashoffset={`${2 * Math.PI * 40 * (1 - r.score / 100)}`}
@@ -247,7 +247,7 @@ export function Lesson() {
             <div className="space-y-3 pt-2">
               <button
                 onClick={handleStartQuiz}
-                className="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-bold text-base transition-colors touch-manipulation focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                className="w-full py-3.5 rounded-xl bg-cadence-800 hover:bg-cadence-700 active:bg-cadence-600 text-white font-bold text-base transition-colors touch-manipulation focus:outline-none focus:ring-2 focus:ring-cadence-400 focus:ring-offset-2"
               >
                 🚀 Start Quiz
               </button>

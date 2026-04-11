@@ -44,23 +44,23 @@ export function Home() {
 
         {/* XP + Streak Hero */}
         <motion.div variants={item}>
-          <Card className="bg-gradient-to-br from-sky-500 to-blue-600 border-0 text-white" padding="lg">
+          <Card className="bg-gradient-to-br from-cadence-800 to-cadence-600 border-0 text-white" padding="lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sky-100 text-sm font-medium">Total XP</p>
+                <p className="text-cadence-100 text-sm font-medium">Total XP</p>
                 <p className="text-4xl font-black mt-0.5">⭐ {progress.totalXP}</p>
               </div>
               <div className="text-right">
-                <p className="text-sky-100 text-sm font-medium">Study Streak</p>
+                <p className="text-cadence-100 text-sm font-medium">Study Streak</p>
                 <p className="text-4xl font-black mt-0.5">
                   🔥 {streak.current}
-                  <span className="text-lg font-normal text-sky-200 ml-1">days</span>
+                  <span className="text-lg font-normal text-cadence-200 ml-1">days</span>
                 </p>
               </div>
             </div>
             <div className="mt-3 pt-3 border-t border-white/20 flex items-center gap-2">
-              <span className={`w-2.5 h-2.5 rounded-full ${studiedToday ? 'bg-green-400' : 'bg-sky-300'}`} />
-              <p className="text-sky-100 text-xs">
+              <span className={`w-2.5 h-2.5 rounded-full ${studiedToday ? 'bg-green-400' : 'bg-cadence-300'}`} />
+              <p className="text-cadence-100 text-xs">
                 {studiedToday ? 'Studied today! Keep the streak going 💪' : 'Study today to keep your streak alive!'}
               </p>
             </div>
@@ -79,7 +79,7 @@ export function Home() {
                   `/courses/${nextLesson.course.id}/modules/${nextLesson.mod.id}/lessons/${nextLesson.lesson.id}`
                 )
               }
-              className="border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-900/20"
+              className="border-cadence-200 dark:border-cadence-900 bg-cadence-50 dark:bg-cadence-900/20"
             >
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 ${nextLesson.course.bgGradient} rounded-xl flex items-center justify-center text-2xl flex-shrink-0`}>
@@ -96,7 +96,7 @@ export function Home() {
                     {nextLesson.lesson.questions.length} questions · ⭐ {nextLesson.lesson.xpReward} XP
                   </p>
                 </div>
-                <div className="text-sky-500 dark:text-sky-400 flex-shrink-0">
+                <div className="text-cadence-800 dark:text-cadence-300 flex-shrink-0">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                   </svg>
@@ -144,7 +144,7 @@ export function Home() {
             </h2>
             <button
               onClick={() => navigate('/courses')}
-              className="text-sky-500 text-xs font-semibold touch-manipulation"
+              className="text-cadence-800 text-xs font-semibold touch-manipulation"
             >
               See all →
             </button>
@@ -167,7 +167,7 @@ export function Home() {
               </p>
               <button
                 onClick={() => navigate('/practice')}
-                className="mt-4 bg-sky-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm touch-manipulation"
+                className="mt-4 bg-cadence-800 text-white px-6 py-2.5 rounded-xl font-bold text-sm touch-manipulation"
               >
                 Take a Practice Test
               </button>

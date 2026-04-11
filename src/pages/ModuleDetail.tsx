@@ -68,7 +68,7 @@ export function ModuleDetail() {
                       <div className="flex items-center gap-2">
                         <p className="font-bold text-slate-900 dark:text-white text-sm">{lesson.title}</p>
                         {completed && (
-                          <Badge variant={score === 100 ? 'green' : score >= 70 ? 'sky' : 'amber'}>
+                          <Badge variant={score === 100 ? 'green' : score >= 70 ? 'cadence' : 'amber'}>
                             {score}%
                           </Badge>
                         )}
