@@ -15,7 +15,7 @@ export function CourseDetail() {
   const course = getCourseById(courseId ?? '')
   if (!course) {
     return (
-      <Layout title="Not Found" backPath="/courses">
+      <Layout title="Not Found" backPath="/learn">
         <p className="text-center text-slate-500 mt-8">Course not found.</p>
       </Layout>
     )
@@ -24,7 +24,7 @@ export function CourseDetail() {
   const completion = getCourseCompletion(course, progress)
 
   return (
-    <Layout title={course.shortTitle} backPath="/courses">
+    <Layout title={course.shortTitle} backPath="/learn">
       {/* Course Hero */}
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
         <div className={`${course.bgGradient} rounded-2xl p-5 text-white`}>
@@ -84,7 +84,7 @@ export function CourseDetail() {
                 transition={{ delay: idx * 0.04 }}
               >
                 <div
-                  onClick={() => !locked && navigate(`/courses/${course.id}/modules/${mod.id}`)}
+                  onClick={() => !locked && navigate(`/learn/${course.id}/modules/${mod.id}`)}
                   className={`
                     bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4
                     ${locked ? 'opacity-60' : 'cursor-pointer active:scale-[0.98] transition-transform touch-manipulation'}

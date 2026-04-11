@@ -76,7 +76,7 @@ export function Home() {
             <Card
               onClick={() =>
                 navigate(
-                  `/courses/${nextLesson.course.id}/modules/${nextLesson.mod.id}/lessons/${nextLesson.lesson.id}`
+                  `/learn/${nextLesson.course.id}/modules/${nextLesson.mod.id}/lessons/${nextLesson.lesson.id}`
                 )
               }
               className="border-cadence-200 dark:border-cadence-900 bg-cadence-50 dark:bg-cadence-900/20"
@@ -113,7 +113,7 @@ export function Home() {
               Needs Review
             </h2>
             <Card
-              onClick={() => navigate('/weak-areas')}
+              onClick={() => navigate('/review')}
               className="border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20"
             >
               <div className="flex items-center gap-3">
@@ -143,7 +143,7 @@ export function Home() {
               Your Courses
             </h2>
             <button
-              onClick={() => navigate('/courses')}
+              onClick={() => navigate('/learn')}
               className="text-cadence-800 text-xs font-semibold touch-manipulation"
             >
               See all →

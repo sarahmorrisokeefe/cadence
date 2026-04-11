@@ -67,13 +67,13 @@ function AppRoutes() {
       <ProgressSyncEffect />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/:courseId" element={<CourseDetail />} />
-        <Route path="/courses/:courseId/modules/:moduleId" element={<ModuleDetail />} />
-        <Route path="/courses/:courseId/modules/:moduleId/lessons/:lessonId" element={<Lesson />} />
+        <Route path="/learn" element={<Courses />} />
+        <Route path="/learn/:courseId" element={<CourseDetail />} />
+        <Route path="/learn/:courseId/modules/:moduleId" element={<ModuleDetail />} />
+        <Route path="/learn/:courseId/modules/:moduleId/lessons/:lessonId" element={<Lesson />} />
         <Route path="/practice" element={<PracticeTest />} />
         <Route path="/practice/:courseId" element={<PracticeTest />} />
-        <Route path="/weak-areas" element={<WeakAreas />} />
+        <Route path="/review" element={<WeakAreas />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/settings" element={<Settings />} />

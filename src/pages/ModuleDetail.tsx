@@ -15,14 +15,14 @@ export function ModuleDetail() {
 
   if (!course || !mod) {
     return (
-      <Layout title="Not Found" backPath={`/courses/${courseId}`}>
+      <Layout title="Not Found" backPath={`/learn/${courseId}`}>
         <p className="text-center text-slate-500 mt-8">Module not found.</p>
       </Layout>
     )
   }
 
   return (
-    <Layout title={mod.title} backPath={`/courses/${course.id}`}>
+    <Layout title={mod.title} backPath={`/learn/${course.id}`}>
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
         {/* Module header */}
         <div className={`${course.bgGradient} rounded-2xl p-4 text-white flex items-center gap-3`}>
@@ -51,7 +51,7 @@ export function ModuleDetail() {
                 transition={{ delay: idx * 0.06 }}
               >
                 <div
-                  onClick={() => prevComplete && navigate(`/courses/${course.id}/modules/${mod.id}/lessons/${lesson.id}`)}
+                  onClick={() => prevComplete && navigate(`/learn/${course.id}/modules/${mod.id}/lessons/${lesson.id}`)}
                   className={`
                     bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4
                     ${prevComplete ? 'cursor-pointer active:scale-[0.98] transition-transform touch-manipulation' : 'opacity-50'}

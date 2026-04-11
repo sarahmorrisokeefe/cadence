@@ -36,7 +36,7 @@ export function PracticeTest() {
       <Layout title="Practice Tests">
         <div className="space-y-4">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
-            Choose a course to take a full timed practice exam that mirrors the real FAA written test.
+            Choose a course to take a full timed practice quiz.
           </p>
           {COURSES.map((c) => (
             <div
@@ -102,7 +102,7 @@ export function PracticeTest() {
           </div>
           <div>
             <h1 className="font-black text-2xl text-slate-900 dark:text-white">{course.title}</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Full FAA-Style Practice Test</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Practice Quiz</p>
           </div>
           <div className="grid grid-cols-3 gap-3">
             {[
@@ -126,7 +126,7 @@ export function PracticeTest() {
             onClick={() => { setStarted(true); test.startTimer() }}
             variant="primary" fullWidth size="lg"
           >
-            Start Test ✈️
+            Start Test 🎯
           </Button>
         </motion.div>
       </Layout>
@@ -183,7 +183,7 @@ export function PracticeTest() {
               <Button onClick={() => setReviewMode(true)} variant="secondary" fullWidth>
                 Review All Questions
               </Button>
-              <Button onClick={() => navigate(`/courses/${course.id}`)} variant="primary" fullWidth>
+              <Button onClick={() => navigate(`/learn/${course.id}`)} variant="primary" fullWidth>
                 Back to Course
               </Button>
             </div>

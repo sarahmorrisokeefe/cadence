@@ -116,7 +116,7 @@ export function Lesson() {
 
   if (!course || !mod || !lesson) {
     return (
-      <Layout title="Not Found" backPath={`/courses/${courseId}`} hideNav>
+      <Layout title="Not Found" backPath={`/learn/${courseId}`} hideNav>
         <p className="text-center text-slate-500 mt-8">Lesson not found.</p>
       </Layout>
     )
@@ -171,7 +171,7 @@ export function Lesson() {
 
           <div className="space-y-3">
             <Button
-              onClick={() => navigate(`/courses/${course.id}/modules/${mod.id}`)}
+              onClick={() => navigate(`/learn/${course.id}/modules/${mod.id}`)}
               variant="primary"
               fullWidth
               size="lg"
@@ -200,7 +200,7 @@ export function Lesson() {
   return (
     <Layout
       title={lesson.title}
-      backPath={`/courses/${course.id}/modules/${mod.id}`}
+      backPath={`/learn/${course.id}/modules/${mod.id}`}
       hideNav
     >
       <div className="space-y-4">
