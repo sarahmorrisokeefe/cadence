@@ -36,11 +36,11 @@ export interface Question {
 
 export interface LessonSlide {
   id: string
-  topic: string          // e.g. "Class B Airspace"
+  topic: string          // e.g. "Key Signatures"
   explanation: string    // teaching paragraph
   questionText?: string  // original question text — populated for true/false so keyFact has context
   keyFact?: string       // key takeaway — the correct answer reformulated as a rule
-  reference?: string     // e.g. "14 CFR 91.131"
+  reference?: string     // e.g. "AP Music Theory, Unit 3"
   staffConfig?: StaffConfig
   diagramType?: DiagramType
 }
