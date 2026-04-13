@@ -1,14 +1,14 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'com.sarahoke.pilotpath',
-  appName: 'PilotPath',
+  appId: 'com.sarahoke.cadence',
+  appName: 'Cadence',
   webDir: 'dist',
   plugins: {
     SplashScreen: {
       launchShowDuration: 2000,
       launchAutoHide: true,
-      backgroundColor: '#0ea5e9',
+      backgroundColor: '#6366f1',
       androidScaleType: 'CENTER_CROP',
       showSpinner: false,
       splashFullScreen: true,

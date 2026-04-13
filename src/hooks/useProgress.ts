@@ -42,7 +42,7 @@ export async function fetchProgressFromSupabase(
   }
 }
 
-const PROGRESS_KEY = 'pilotpath_progress'
+const PROGRESS_KEY = 'cadence_progress'
 
 const defaultProgress: UserProgress = {
   courses: {},

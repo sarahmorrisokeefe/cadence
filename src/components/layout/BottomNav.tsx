@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const tabs = [
   { id: 'home', label: 'Home', icon: '🏠', path: '/' },
   { id: 'courses', label: 'Courses', icon: '📚', path: '/courses' },
-  { id: 'test', label: 'Test', icon: '✈️', path: '/practice' },
+  { id: 'test', label: 'Test', icon: '🎵', path: '/practice' },
   { id: 'weak', label: 'Weak Areas', icon: '🎯', path: '/weak-areas' },
   { id: 'progress', label: 'Progress', icon: '📊', path: '/progress' },
 ] as const

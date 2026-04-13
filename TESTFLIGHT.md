@@ -1,4 +1,4 @@
-# PilotPath — TestFlight Submission Checklist
+# Cadence — TestFlight Submission Checklist
 
 Complete these steps in order to get the app running on TestFlight.
 
@@ -27,7 +27,7 @@ Complete these steps in order to get the app running on TestFlight.
 - [ ] In Xcode, select the **App** target
 - [ ] Go to **Signing & Capabilities** tab
 - [ ] Set **Team** to your Apple Developer account
-- [ ] Confirm **Bundle Identifier** is `com.sarahoke.pilotpath`
+- [ ] Confirm **Bundle Identifier** is `com.sarahoke.cadence`
 - [ ] Enable **Automatically manage signing**
 - [ ] Verify a provisioning profile is created/downloaded successfully
 
@@ -65,7 +65,7 @@ Open `ios/App/App/Info.plist` and add/verify these entries:
 
 ## Step 5: Splash Screen
 
-- [ ] Capacitor splash screen is configured in `capacitor.config.ts` (sky-blue background, 2s duration)
+- [ ] Capacitor splash screen is configured in `capacitor.config.ts` (indigo background, 2s duration)
 - [ ] Verify `LaunchScreen.storyboard` loads correctly on first run (Xcode → Run on Simulator)
 - [ ] If customizing further: edit `ios/App/App/Base.lproj/LaunchScreen.storyboard`
 
@@ -118,13 +118,13 @@ Open `ios/App/App/Info.plist` and add/verify these entries:
 - [ ] Log in to [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
 - [ ] Create new App (if not done): **My Apps → + → New App**
   - Platform: iOS
-  - Name: PilotPath
-  - Bundle ID: `com.sarahoke.pilotpath`
+  - Name: Cadence
+  - Bundle ID: `com.sarahoke.cadence`
   - Primary Language: English (US)
-  - SKU: `pilotpath-ios-001`
+  - SKU: `cadence-ios-001`
 - [ ] Fill in app metadata:
   - [ ] App description
-  - [ ] Keywords (aviation, FAA, pilot, written exam, PPL, study)
+  - [ ] Keywords (music theory, chords, scales, ear training, study)
   - [ ] Support URL
   - [ ] Marketing URL (optional)
   - [ ] Privacy Policy URL (required for App Store)

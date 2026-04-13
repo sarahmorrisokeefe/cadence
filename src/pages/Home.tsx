@@ -6,7 +6,7 @@ import { Card } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
 import { COURSES } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { getTopWeakAreas, getCourseCompletion } from '../utils'
+import { getTopWeakAreas, getCourseCompletion, getLiveStreak } from '../utils'
 
 export function Home() {
   const navigate = useNavigate()
@@ -29,6 +29,7 @@ export function Home() {
   })()
 
   const streak = progress.streak
+  const liveStreakCount = getLiveStreak(streak)
   const today = new Date().toISOString().split('T')[0]
   const studiedToday = streak.lastStudied === today
 
@@ -53,8 +54,8 @@ export function Home() {
               <div className="text-right">
                 <p className="text-sky-100 text-sm font-medium">Study Streak</p>
                 <p className="text-4xl font-black mt-0.5">
-                  🔥 {streak.current}
-                  <span className="text-lg font-normal text-sky-200 ml-1">days</span>
+                  🔥 {liveStreakCount}
+                  <span className="text-lg font-normal text-sky-200 ml-1">{liveStreakCount === 1 ? 'day' : 'days'}</span>
                 </p>
               </div>
             </div>

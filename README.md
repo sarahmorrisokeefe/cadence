@@ -1,14 +1,14 @@
-# PilotPath ✈️
+# Cadence 🎵
 
-A gamified, mobile-first FAA written exam prep app — think Duolingo for pilots. Study for your Private, Instrument, and Commercial certificates through bite-sized lessons, instant feedback, and an XP/streak system that keeps you coming back.
+A gamified, mobile-first music theory learning app — think Duolingo for musicians. Master intervals, chords, scales, and ear training through bite-sized lessons, instant feedback, and an XP/streak system that keeps you coming back.
 
 ---
 
 ## Features
 
-- **4 Courses** — Ground School, PPL, Instrument Rating, Commercial Pilot (650 questions total)
+- **4 Courses** — Fundamentals, Chord Theory, Scales & Modes, Ear Training (650 questions total)
 - **Gamified progression** — XP rewards, streaks, locked modules, lesson completion confetti
-- **Practice tests** — timed, full-length FAA-style exams with per-topic score breakdowns
+- **Practice tests** — timed, full-length exams with per-topic score breakdowns
 - **Weak areas tracker** — automatically surfaces topics where you miss the most questions
 - **Dark mode** — system-aware with manual toggle, persisted across sessions
 - **Offline-ready** — all data lives in `localStorage`; no backend required
@@ -40,8 +40,8 @@ A gamified, mobile-first FAA written exam prep app — think Duolingo for pilots
 ### Install and Run
 
 ```bash
-git clone https://github.com/your-username/pilotpath.git
-cd pilotpath
+git clone https://github.com/sarahmorrisokeefe/cadence.git
+cd cadence
 npm install
 npm run dev
 ```
@@ -120,14 +120,14 @@ npm run ios:build   # builds Vite + syncs to Xcode project
 | Storage | `@capacitor/preferences` on native, `localStorage` on web (auto-detected) |
 | Status bar | Syncs with dark mode via `@capacitor/status-bar` |
 | Keyboard | `@capacitor/keyboard` — resize body on keyboard show |
-| Splash screen | `@capacitor/splash-screen` — sky-blue (#0ea5e9), 2s auto-hide |
+| Splash screen | `@capacitor/splash-screen` — indigo (#6366f1), 2s auto-hide |
 | Safe areas | CSS `env(safe-area-inset-top/bottom)` on header + bottom nav |
 | Native feel | `-webkit-user-select: none`, `-webkit-touch-callout: none` |
 | Viewport | `viewport-fit=cover` for edge-to-edge on notched devices |
 
 ### App icon
 
-Source icon is at `assets/icon.svg`. To generate the 1024×1024 PNG:
+Source icon is at `assets/icon.svg`. To generate the 1024x1024 PNG:
 
 ```bash
 node scripts/generate-icon.js
@@ -137,7 +137,7 @@ node scripts/generate-icon.js
 npx @capacitor/assets generate --ios
 ```
 
-Then in Xcode: **Assets.xcassets → AppIcon → drag icon.png into the 1024×1024 slot.**
+Then in Xcode: **Assets.xcassets → AppIcon → drag icon.png into the 1024x1024 slot.**
 
 ### Info.plist additions (do in Xcode)
 
@@ -165,10 +165,10 @@ src/
 │   ├── quiz/          # QuestionCard, FeedbackPanel
 │   └── ui/            # Button, Card, ProgressBar, Badge, CourseCard
 ├── data/
-│   ├── groundSchool.ts   # 150 questions (5 modules)
-│   ├── ppl.ts            # 200 questions (10 modules)
-│   ├── ir.ts             # 160 questions (8 modules)
-│   ├── cpl.ts            # 140 questions (7 modules)
+│   ├── fundamentals.ts   # 150 questions (5 modules)
+│   ├── chords.ts         # 200 questions (10 modules)
+│   ├── scales.ts         # 160 questions (8 modules)
+│   ├── earTraining.ts    # 140 questions (7 modules)
 │   └── courses.ts        # Assembles all courses
 ├── hooks/
 │   ├── useDarkMode.ts
@@ -198,14 +198,14 @@ Each question in `src/data/*.ts` follows this shape:
 
 ```typescript
 {
-  id: 'ppl-m1-l1-q1',          // unique: course-module-lesson-question
-  topic: 'Weather',
-  type: 'multiple-choice',      // or 'true-false'
-  text: 'What does BKN014 mean in a METAR?',
-  options: ['Broken at 1,400 ft AGL', 'Broken at 14,000 ft MSL', '…', '…'],
-  correctAnswer: 0,             // 0-based index into options[]
-  explanation: 'Cloud heights in METARs are reported in hundreds of feet AGL.',
-  reference: 'AIM 7-1-30'
+  id: 'chords-m1-l1-q1',          // unique: course-module-lesson-question
+  topic: 'Triads',
+  type: 'multiple-choice',         // or 'true-false'
+  text: 'What notes make up a C major triad?',
+  options: ['C E G', 'C Eb G', 'C E G#', 'C D G'],
+  correctAnswer: 0,                // 0-based index into options[]
+  explanation: 'A major triad is built from a root, major third, and perfect fifth.',
+  reference: 'Fundamentals Ch. 3'
 }
 ```
 

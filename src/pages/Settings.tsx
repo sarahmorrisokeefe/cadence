@@ -182,20 +182,9 @@ export function Settings() {
         <SettingsCard>
           <SettingsRow label="App Version" value="0.1.0" />
           <SettingsRow
-            label="FAA Website"
-            value="faa.gov ↗"
-            onClick={() => window.open('https://www.faa.gov', '_blank', 'noopener,noreferrer')}
-          />
-          <SettingsRow
-            label="FAA Handbooks & Manuals"
-            value="faa.gov ↗"
-            onClick={() =>
-              window.open(
-                'https://www.faa.gov/regulations_policies/handbooks_manuals/aviation',
-                '_blank',
-                'noopener,noreferrer'
-              )
-            }
+            label="musictheory.net"
+            value="musictheory.net ↗"
+            onClick={() => window.open('https://www.musictheory.net', '_blank', 'noopener,noreferrer')}
           />
         </SettingsCard>
       </motion.div>

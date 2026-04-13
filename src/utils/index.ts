@@ -92,6 +92,19 @@ export function getCourseXP(courseId: string, progress: UserProgress): number {
   return progress.courses[courseId]?.xp ?? 0
 }
 
+/**
+ * Returns the "live" streak count, accounting for days that have passed
+ * since the user last studied. If the user hasn't studied today or yesterday,
+ * the streak is effectively 0.
+ */
+export function getLiveStreak(streak: { current: number; lastStudied: string | null }): number {
+  if (!streak.lastStudied) return 0
+  if (isToday(streak.lastStudied)) return streak.current
+  if (isYesterday(streak.lastStudied)) return streak.current
+  // More than a day has passed — streak is broken
+  return 0
+}
+
 // ─── Weak Areas ───────────────────────────────────────────────────────────────
 
 export function getTopWeakAreas(

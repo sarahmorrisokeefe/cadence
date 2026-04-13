@@ -85,8 +85,8 @@ export function Auth() {
       <div className="max-w-sm mx-auto pt-4">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="text-5xl mb-3">✈️</div>
-          <h1 className="font-black text-2xl text-slate-900 dark:text-white">PilotPath</h1>
+          <div className="text-5xl mb-3">🎵</div>
+          <h1 className="font-black text-2xl text-slate-900 dark:text-white">Cadence</h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
             {mode === 'forgot' ? 'Reset your password' : 'Save your progress across devices'}
           </p>
@@ -221,6 +221,17 @@ export function Auth() {
                   ← Back to sign in
                 </button>
               )}
+            </div>
+
+            {/* Skip / browse without account */}
+            <div className="text-center pt-2">
+              <button
+                type="button"
+                onClick={() => navigate('/')}
+                className="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 transition-colors touch-manipulation"
+              >
+                Skip for now — browse without an account
+              </button>
             </div>
           </motion.form>
         </AnimatePresence>

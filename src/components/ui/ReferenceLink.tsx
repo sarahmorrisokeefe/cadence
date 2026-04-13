@@ -6,8 +6,8 @@ interface ReferenceLinkProps {
 }
 
 /**
- * Renders a FAA reference string (e.g. "14 CFR 91.131 / AIM 7-1-6") with
- * known references as clickable external links and unknown ones as plain text.
+ * Renders a reference string (e.g. "Music Theory Ch. 3") as a label,
+ * with linkable references shown as external links and others as plain text.
  */
 export function ReferenceLink({ reference, className = '' }: ReferenceLinkProps) {
   const parts = parseReference(reference)

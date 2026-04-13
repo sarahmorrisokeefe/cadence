@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Capacitor } from '@capacitor/core'
 import { BottomNav } from './BottomNav'
 import { useDarkMode } from '../../hooks/useDarkMode'
 import { useAuth } from '../../context/AuthContext'
@@ -39,9 +40,9 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
               </h1>
             ) : (
               <div className="flex items-center gap-2">
-                <span className="text-2xl">✈️</span>
+                <span className="text-2xl">🎵</span>
                 <span className="font-black text-xl text-sky-600 dark:text-sky-400 tracking-tight">
-                  PilotPath
+                  Cadence
                 </span>
               </div>
             )}
@@ -122,14 +123,16 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
             Sarah O'Keefe
           </a>
         </p>
-        <a
-          href="https://ko-fi.com/sarahmorrisokeefe"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 inline-block text-xs text-sky-500 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-600 transition-colors"
-        >
-          ☕ Support this app on Ko-fi
-        </a>
+        {!Capacitor.isNativePlatform() && (
+          <a
+            href="https://ko-fi.com/sarahmorrisokeefe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-block text-xs text-sky-500 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-600 transition-colors"
+          >
+            ☕ Support this app on Ko-fi
+          </a>
+        )}
       </footer>
 
       {!hideNav && <BottomNav />}

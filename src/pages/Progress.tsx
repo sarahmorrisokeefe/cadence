@@ -4,11 +4,12 @@ import { ProgressBar } from '../components/ui/ProgressBar'
 import { Badge } from '../components/ui/Badge'
 import { COURSES } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { getCourseCompletion, getCourseXP, formatTime, pluralize } from '../utils'
+import { getCourseCompletion, getCourseXP, formatTime, pluralize, getLiveStreak } from '../utils'
 
 export function Progress() {
   const { progress, resetProgress } = useProgress()
   const streak = progress.streak
+  const liveStreakCount = getLiveStreak(streak)
 
   const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.07 } } }
   const item = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }
@@ -23,8 +24,8 @@ export function Progress() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-orange-100 text-sm font-medium">Current Streak</p>
-                <p className="text-5xl font-black mt-1">🔥 {streak.current}</p>
-                <p className="text-orange-100 text-sm mt-1">{pluralize(streak.current, 'day')} in a row</p>
+                <p className="text-5xl font-black mt-1">🔥 {liveStreakCount}</p>
+                <p className="text-orange-100 text-sm mt-1">{pluralize(liveStreakCount, 'day')} in a row</p>
               </div>
               <div className="text-right">
                 <p className="text-orange-100 text-sm font-medium">Longest</p>

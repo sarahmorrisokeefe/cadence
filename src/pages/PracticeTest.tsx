@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { Layout } from '../components/layout/Layout'
 import { Button } from '../components/ui/Button'
 import { Badge } from '../components/ui/Badge'
+import { Toast } from '../components/ui/Toast'
 import { COURSES, getCourseById } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
+import { useAuth } from '../context/AuthContext'
 import { usePracticeTest } from '../hooks/useQuiz'
 import type { PracticeTestResults } from '../hooks/useQuiz'
 import type { TestResult } from '../types'
@@ -23,9 +25,12 @@ function buildTestQuestions(courseId: string, count: number) {
 export function PracticeTest() {
   const { courseId } = useParams<{ courseId: string }>()
   const navigate = useNavigate()
+  const { user } = useAuth()
   const { completeTest } = useProgress()
   const [started, setStarted] = useState(false)
   const [reviewMode, setReviewMode] = useState(false)
+  const [showAuthToast, setShowAuthToast] = useState(false)
+  const dismissToast = useCallback(() => setShowAuthToast(false), [])
   const resultRef = useRef<PracticeTestResults | null>(null)
 
   const course = getCourseById(courseId ?? '')
@@ -36,7 +41,7 @@ export function PracticeTest() {
       <Layout title="Practice Tests">
         <div className="space-y-4">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
-            Choose a course to take a full timed practice exam that mirrors the real FAA written test.
+            Choose a course to take a full timed practice exam.
           </p>
           {COURSES.map((c) => (
             <div
@@ -102,7 +107,7 @@ export function PracticeTest() {
           </div>
           <div>
             <h1 className="font-black text-2xl text-slate-900 dark:text-white">{course.title}</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Full FAA-Style Practice Test</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Full Practice Test</p>
           </div>
           <div className="grid grid-cols-3 gap-3">
             {[
@@ -123,12 +128,23 @@ export function PracticeTest() {
             </p>
           </div>
           <Button
-            onClick={() => { setStarted(true); test.startTimer() }}
+            onClick={() => {
+              if (!user) { setShowAuthToast(true); return }
+              setStarted(true); test.startTimer()
+            }}
             variant="primary" fullWidth size="lg"
           >
-            Start Test ✈️
+            Start Test 🎵
           </Button>
         </motion.div>
+
+        <Toast
+          message="Sign in to take practice tests and track your progress"
+          visible={showAuthToast}
+          onDismiss={dismissToast}
+          actionLabel="Sign In"
+          actionPath="/auth"
+        />
       </Layout>
     )
   }
