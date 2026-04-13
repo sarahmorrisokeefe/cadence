@@ -152,7 +152,7 @@ export function Settings() {
               </p>
               <button
                 onClick={() => navigate('/auth')}
-                className="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm transition-colors touch-manipulation"
+                className="w-full py-3 rounded-xl bg-cadence-800 hover:bg-cadence-700 text-white font-bold text-sm transition-colors touch-manipulation"
               >
                 Sign In or Create Account
               </button>
@@ -182,16 +182,16 @@ export function Settings() {
         <SettingsCard>
           <SettingsRow label="App Version" value="0.1.0" />
           <SettingsRow
-            label="FAA Website"
-            value="faa.gov ↗"
-            onClick={() => window.open('https://www.faa.gov', '_blank', 'noopener,noreferrer')}
+            label="musictheory.net"
+            value="musictheory.net ↗"
+            onClick={() => window.open('https://www.musictheory.net/', '_blank', 'noopener,noreferrer')}
           />
           <SettingsRow
-            label="FAA Handbooks & Manuals"
-            value="faa.gov ↗"
+            label="AP Music Theory"
+            value="collegeboard.org ↗"
             onClick={() =>
               window.open(
-                'https://www.faa.gov/regulations_policies/handbooks_manuals/aviation',
+                'https://apcentral.collegeboard.org/courses/ap-music-theory',
                 '_blank',
                 'noopener,noreferrer'
               )
