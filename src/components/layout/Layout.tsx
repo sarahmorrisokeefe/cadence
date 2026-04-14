@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Capacitor } from '@capacitor/core'
 import { BottomNav } from './BottomNav'
 import { useDarkMode } from '../../hooks/useDarkMode'
 import { useAuth } from '../../context/AuthContext'
@@ -111,14 +112,16 @@ export function Layout({ children, hideNav = false, title, backPath }: LayoutPro
             Sarah O'Keefe
           </a>
         </p>
-        <a
-          href="https://ko-fi.com/sarahmorrisokeefe"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 inline-block text-xs text-cadence-800 dark:text-cadence-300 hover:text-cadence-800 dark:hover:text-cadence-700 transition-colors"
-        >
-          ☕ Support this app on Ko-fi
-        </a>
+        {!Capacitor.isNativePlatform() && (
+          <a
+            href="https://ko-fi.com/sarahmorrisokeefe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-block text-xs text-cadence-800 dark:text-cadence-300 hover:text-cadence-800 dark:hover:text-cadence-700 transition-colors"
+          >
+            ☕ Support this app on Ko-fi
+          </a>
+        )}
       </footer>
 
       {!hideNav && <BottomNav />}

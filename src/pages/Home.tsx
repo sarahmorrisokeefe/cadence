@@ -6,7 +6,7 @@ import { Badge } from '../components/ui/Badge'
 import { ProgressBar } from '../components/ui/ProgressBar'
 import { COURSES } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { getTopWeakAreas, getCourseCompletion, getTodayDateString } from '../utils'
+import { getTopWeakAreas, getCourseCompletion, getTodayDateString, getLiveStreak } from '../utils'
 
 const LEVEL_THRESHOLDS = [0, 50, 150, 300, 500, 800, 1200, 1800, 2500, 3500]
 
@@ -43,6 +43,7 @@ export function Home() {
   })()
 
   const streak = progress.streak
+  const liveStreakCount = getLiveStreak(streak)
   const studiedToday = streak.lastStudied === today
   const level = getLevel(progress.totalXP)
 
@@ -71,8 +72,8 @@ export function Home() {
               <div className="text-right">
                 <p className="text-cadence-100 text-sm font-medium">Streak</p>
                 <p className="text-4xl font-black mt-0.5">
-                  {streak.current}
-                  <span className="text-lg font-normal text-cadence-200 ml-1">d</span>
+                  {liveStreakCount}
+                  <span className="text-lg font-normal text-cadence-200 ml-1">{liveStreakCount === 1 ? 'day' : 'days'}</span>
                 </p>
               </div>
             </div>

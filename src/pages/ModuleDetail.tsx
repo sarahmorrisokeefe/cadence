@@ -1,15 +1,23 @@
-import { useMemo } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useMemo, useState, useCallback } from 'react'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Layout } from '../components/layout/Layout'
 import { Badge } from '../components/ui/Badge'
+import { Toast } from '../components/ui/Toast'
 import { getCourseById } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
+import { useAuth } from '../context/AuthContext'
 
 export function ModuleDetail() {
   const { courseId, moduleId } = useParams<{ courseId: string; moduleId: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
+  const { user } = useAuth()
   const { progress } = useProgress()
+  const [showAuthToast, setShowAuthToast] = useState(
+    !!(location.state as { authRequired?: boolean } | null)?.authRequired
+  )
+  const dismissToast = useCallback(() => setShowAuthToast(false), [])
 
   const course = getCourseById(courseId ?? '')
   const mod = course?.modules.find((m) => m.id === moduleId)
@@ -106,7 +114,10 @@ export function ModuleDetail() {
                 transition={{ delay: idx * 0.06 }}
               >
                 <div
-                  onClick={() => navigate(`/learn/${course.id}/modules/${mod.id}/lessons/${lesson.id}`)}
+                  onClick={() => {
+                    if (!user) { setShowAuthToast(true); return }
+                    navigate(`/learn/${course.id}/modules/${mod.id}/lessons/${lesson.id}`)
+                  }}
                   className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4 cursor-pointer active:scale-[0.98] transition-transform touch-manipulation"
                 >
                   <div className="flex items-center gap-3">
@@ -140,6 +151,14 @@ export function ModuleDetail() {
           })}
         </div>
       </motion.div>
+
+      <Toast
+        message="Sign in to start lessons and track your progress"
+        visible={showAuthToast}
+        onDismiss={dismissToast}
+        actionLabel="Sign In"
+        actionPath="/auth"
+      />
     </Layout>
   )
 }

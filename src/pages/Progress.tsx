@@ -4,7 +4,7 @@ import { ProgressBar } from '../components/ui/ProgressBar'
 import { Badge } from '../components/ui/Badge'
 import { COURSES } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { getCourseCompletion, getCourseXP, formatTime, pluralize, getTodayDateString } from '../utils'
+import { getCourseCompletion, getCourseXP, formatTime, pluralize, getTodayDateString, getLiveStreak } from '../utils'
 import type { BadgeId } from '../types'
 
 // ─── Badge Definitions ───────────────────────────────────────────────────────
@@ -49,6 +49,7 @@ function getLevelInfo(totalXP: number) {
 export function Progress() {
   const { progress, resetProgress } = useProgress()
   const streak = progress.streak
+  const liveStreakCount = getLiveStreak(streak)
   const levelInfo = getLevelInfo(progress.totalXP)
 
   const today = getTodayDateString()
@@ -121,7 +122,7 @@ export function Progress() {
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-orange-100 text-sm font-medium">Current Streak</p>
-                <p className="text-5xl font-black mt-1">{streak.current}</p>
+                <p className="text-5xl font-black mt-1">{liveStreakCount}</p>
                 <p className="text-orange-100 text-sm mt-1">{pluralize(streak.current, 'day')} in a row</p>
               </div>
               <div className="text-right">

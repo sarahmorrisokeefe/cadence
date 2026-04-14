@@ -222,6 +222,17 @@ export function Auth() {
                 </button>
               )}
             </div>
+
+            {/* Skip / browse without account */}
+            <div className="text-center pt-2">
+              <button
+                type="button"
+                onClick={() => navigate('/')}
+                className="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-600 dark:hover:text-slate-300 transition-colors touch-manipulation"
+              >
+                Skip for now — browse without an account
+              </button>
+            </div>
           </motion.form>
         </AnimatePresence>
       </div>
