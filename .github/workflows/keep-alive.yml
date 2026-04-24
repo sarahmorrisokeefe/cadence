@@ -1,16 +1,37 @@
 name: Keep Supabase Alive
 
+# Supabase free-tier projects pause after ~7 days of no database write activity.
+# Read-only requests (SELECT via PostgREST) do not reset the inactivity timer,
+# so this workflow PATCHes a dedicated keepalive row to produce a WAL entry.
+#
+# One-time Supabase setup (run in the SQL editor):
+#   create table if not exists public.keepalive (
+#     id int primary key,
+#     last_ping timestamptz not null default now()
+#   );
+#   insert into public.keepalive (id) values (1) on conflict do nothing;
+#
+# Required GitHub Actions secrets:
+#   SUPABASE_URL               e.g. https://xxxxxxxx.supabase.co  (no trailing slash)
+#   SUPABASE_SERVICE_ROLE_KEY  service_role key from Project Settings -> API
+
 on:
   schedule:
-    - cron: '0 12 * * 1,4' # Runs every Monday and Thursday at noon UTC
-  workflow_dispatch: # lets you trigger it manually too
+    - cron: '0 12 * * *'  # daily at 12:00 UTC
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase
+      - name: Ping Supabase (write)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          curl -s "${{ secrets.SUPABASE_URL }}/rest/v1/user_progress?limit=1" \
-            -H "apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}"
+          curl -fsS -X PATCH "$SUPABASE_URL/rest/v1/keepalive?id=eq.1" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY" \
+            -H "Content-Type: application/json" \
+            -H "Prefer: return=minimal" \
+            --data "{\"last_ping\":\"$(date -u +%FT%TZ)\"}"
