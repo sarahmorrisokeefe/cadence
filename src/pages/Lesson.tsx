@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
@@ -8,10 +8,8 @@ import { QuestionCard } from '../components/quiz/QuestionCard'
 import { FeedbackPanel } from '../components/quiz/FeedbackPanel'
 import { StudyCard } from '../components/quiz/StudyCard'
 import { Button } from '../components/ui/Button'
-import { Toast } from '../components/ui/Toast'
 import { getCourseById } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { useAuth } from '../context/AuthContext'
 import { useQuiz } from '../hooks/useQuiz'
 import type { QuizResults } from '../hooks/useQuiz'
 import type { LessonSlide, Question } from '../types'
@@ -41,17 +39,9 @@ export function Lesson() {
     lessonId: string
   }>()
   const navigate = useNavigate()
-  const { user } = useAuth()
   const { completeLesson } = useProgress()
   const resultRef = useRef<QuizResults | null>(null)
   const xpRef = useRef(0)
-
-  // Redirect anon users back to the module page
-  useEffect(() => {
-    if (!user) {
-      navigate(`/learn/${courseId}/modules/${moduleId}`, { replace: true, state: { authRequired: true } })
-    }
-  }, [user, courseId, moduleId, navigate])
 
   // ── Phase state machine ──────────────────────────────────────────────────
   const [phase, setPhase] = useState<'study' | 'quiz' | 'results'>('study')
