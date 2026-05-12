@@ -4,6 +4,10 @@ import type { UserProgress, Question, TestResult } from '../types'
 import { getTodayDateString, isToday, isYesterday } from '../utils'
 import { supabase, supabaseEnabled } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
+import { COURSES } from '../data/courses'
+import { sanitizeProgress } from '../utils/progressMigration'
+
+const VALID_COURSE_IDS: Set<string> = new Set(COURSES.map((c) => c.id))
 
 // ─── Supabase sync helpers (standalone, no hook deps) ────────────────────────
 
@@ -77,10 +81,13 @@ export function useProgress() {
     PROGRESS_KEY,
     defaultProgress
   )
-  const [progress, setProgressState] = useState<UserProgress>({
-    ...defaultProgress,
-    ...cachedProgress,
-    streak: { ...defaultProgress.streak, ...cachedProgress.streak },
+  const [progress, setProgressState] = useState<UserProgress>(() => {
+    const merged = {
+      ...defaultProgress,
+      ...cachedProgress,
+      streak: { ...defaultProgress.streak, ...cachedProgress.streak },
+    }
+    return sanitizeProgress(merged, VALID_COURSE_IDS, defaultProgress)
   })
   const [loaded, setLoaded] = useState(false)
 
@@ -98,8 +105,16 @@ export function useProgress() {
           ...remote,
           streak: { ...defaultProgress.streak, ...remote.streak },
         }
-        setProgressState(merged)
-        setCachedProgress(merged) // update local cache
+        const sanitized = sanitizeProgress(merged, VALID_COURSE_IDS, defaultProgress)
+        setProgressState(sanitized)
+        setCachedProgress(sanitized) // update local cache
+        if (sanitized !== merged) {
+          // Aviation contamination detected — push the cleaned default
+          // back to Supabase so the account is permanently clean.
+          pushProgressToSupabase(user!.id, sanitized).catch(() => {
+            // Offline — next successful write will complete the cleanup.
+          })
+        }
       }
       setLoaded(true)
     }
