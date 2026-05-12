@@ -104,7 +104,7 @@ function SignedOutHome() {
             to save your set.
           </p>
           <p className="mt-2.5 text-[13px] font-semibold text-bubblegum-plum-soft">
-            Sign in to track tracks, build streaks, and earn records.
+            Track your set, build nights, earn records.
           </p>
 
           <div className="mt-4">
@@ -212,7 +212,7 @@ function FirstNightHome() {
         navigate(
           `/learn/${firstCourse.id}/modules/${firstModule.id}/lessons/${firstLesson.id}`
         ),
-      'Sign in to start lessons'
+      'Grab a backstage pass to play tracks'
     )
   }
 
@@ -458,7 +458,7 @@ function SignedInHome() {
                     navigate(
                       `/learn/${nextLesson.course.id}/modules/${nextLesson.mod.id}/lessons/${nextLesson.lesson.id}`
                     ),
-                  'Sign in to start lessons'
+                  'Grab a backstage pass to play tracks'
                 )
               }
               className="relative flex w-full items-center gap-3.5 overflow-hidden rounded-3xl bg-bubblegum-sky p-4 text-left text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation"
@@ -510,7 +510,7 @@ function SignedInHome() {
               <PrimaryButton
                 tone="plum"
                 onClick={() =>
-                  gate(() => navigate('/practice'), 'Sign in to take practice quizzes')
+                  gate(() => navigate('/practice'), 'Grab a backstage pass for Soundcheck')
                 }
               >
                 Open Soundcheck →
@@ -540,7 +540,7 @@ function SignedInHome() {
             <Eyebrow>b-sides to brush up 🔁</Eyebrow>
             <button
               type="button"
-              onClick={() => gate(() => navigate('/review'), 'Sign in to review weak areas')}
+              onClick={() => gate(() => navigate('/review'), 'Grab a backstage pass for your B-sides')}
               className="flex w-full items-center gap-3 rounded-3xl bg-bubblegum-cherry/20 p-3.5 text-left transition-transform active:scale-[0.99] touch-manipulation"
             >
               <span

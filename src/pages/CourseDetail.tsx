@@ -74,7 +74,7 @@ export function CourseDetail() {
   const goLesson = (t: TrackEntry) =>
     gate(
       () => navigate(`/learn/${course.id}/modules/${t.module.id}/lessons/${t.lesson.id}`),
-      'Sign in to start lessons'
+      'Grab a backstage pass to play tracks'
     )
 
   return (
@@ -189,7 +189,7 @@ export function CourseDetail() {
           {/* Encore — full practice test */}
           <button
             type="button"
-            onClick={() => gate(() => navigate('/practice'), 'Sign in to take practice quizzes')}
+            onClick={() => gate(() => navigate('/practice'), 'Grab a backstage pass for Soundcheck')}
             className="mt-4 flex w-full items-center gap-3 rounded-3xl bg-bubblegum-peach p-4 text-left text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation"
           >
             <span className="rounded-full bg-bubblegum-plum px-2 py-1 font-mono text-[10px] font-black uppercase tracking-[0.1em] text-bubblegum-cream">
@@ -216,7 +216,7 @@ export function CourseDetail() {
             <div className="mt-5">
               <PrimaryButton
                 onClick={() =>
-                  gate(() => navigate('/practice'), 'Sign in to take practice quizzes')
+                  gate(() => navigate('/practice'), 'Grab a backstage pass for Soundcheck')
                 }
               >
                 Album played — Take the encore →

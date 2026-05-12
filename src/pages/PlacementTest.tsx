@@ -185,7 +185,7 @@ export function PlacementTest() {
   if (!q) {
     return (
       <Layout title="Placement Test" hideNav>
-        <p className="text-center text-slate-500 mt-8">Loading...</p>
+        <p className="text-center text-slate-500 mt-8">Tuning up…</p>
       </Layout>
     )
   }

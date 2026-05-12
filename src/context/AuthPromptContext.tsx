@@ -8,7 +8,7 @@ interface AuthPromptContextValue {
 
 const AuthPromptContext = createContext<AuthPromptContextValue | null>(null)
 
-const DEFAULT_MESSAGE = 'Sign in to keep your progress'
+const DEFAULT_MESSAGE = 'Grab a backstage pass to save your set'
 
 export function AuthPromptProvider({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(false)
@@ -29,8 +29,8 @@ export function AuthPromptProvider({ children }: { children: ReactNode }) {
         visible={visible}
         onDismiss={dismiss}
         actions={[
-          { label: 'Sign In', path: '/auth' },
-          { label: 'Sign Up', path: '/auth?mode=signup' },
+          { label: 'Take the stage', path: '/auth' },
+          { label: 'Get a pass', path: '/auth?mode=signup' },
         ]}
       />
     </AuthPromptContext.Provider>

@@ -111,7 +111,7 @@ export function ModuleDetail() {
                   onClick={() =>
                     gate(
                       () => navigate(`/learn/${course.id}/modules/${mod.id}/lessons/${lesson.id}`),
-                      'Sign in to start lessons'
+                      'Grab a backstage pass to play tracks'
                     )
                   }
                   className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-4 cursor-pointer active:scale-[0.98] transition-transform touch-manipulation"
