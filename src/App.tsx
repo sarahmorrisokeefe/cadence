@@ -17,11 +17,13 @@ import { Settings } from './pages/Settings'
 import { PlacementTest } from './pages/PlacementTest'
 import { useDarkMode } from './hooks/useDarkMode'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { AuthPromptProvider } from './context/AuthPromptContext'
+import { RequireAuth } from './components/auth/RequireAuth'
 
 // ─── Routes ─────────────────────────────────────────────────────────────────
 
 function AppRoutes() {
-  const { user, loading } = useAuth()
+  const { loading } = useAuth()
   const { isDark } = useDarkMode()
 
   // Add platform class so CSS can target native-only styles
@@ -49,30 +51,61 @@ function AppRoutes() {
     )
   }
 
-  // Not signed in — show auth page only
-  if (!user) {
-    return (
-      <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route path="*" element={<Navigate to="/auth" replace />} />
-      </Routes>
-    )
-  }
-
-  // Signed in — show full app
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/learn" element={<Courses />} />
       <Route path="/learn/:courseId" element={<CourseDetail />} />
       <Route path="/learn/:courseId/modules/:moduleId" element={<ModuleDetail />} />
-      <Route path="/learn/:courseId/modules/:moduleId/lessons/:lessonId" element={<Lesson />} />
-      <Route path="/practice" element={<PracticeTest />} />
-      <Route path="/review" element={<WeakAreas />} />
-      <Route path="/progress" element={<Progress />} />
+      <Route
+        path="/learn/:courseId/modules/:moduleId/lessons/:lessonId"
+        element={
+          <RequireAuth message="Sign in to start lessons">
+            <Lesson />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/practice"
+        element={
+          <RequireAuth message="Sign in to take practice quizzes">
+            <PracticeTest />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/review"
+        element={
+          <RequireAuth message="Sign in to review weak areas">
+            <WeakAreas />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/progress"
+        element={
+          <RequireAuth message="Sign in to track your progress">
+            <Progress />
+          </RequireAuth>
+        }
+      />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/placement" element={<PlacementTest />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route
+        path="/placement"
+        element={
+          <RequireAuth message="Sign in to take the placement test">
+            <PlacementTest />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <RequireAuth message="Sign in to access settings">
+            <Settings />
+          </RequireAuth>
+        }
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
@@ -84,8 +117,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppRoutes />
-        <Analytics />
+        <AuthPromptProvider>
+          <AppRoutes />
+          <Analytics />
+        </AuthPromptProvider>
       </AuthProvider>
       <SpeedInsights />
     </BrowserRouter>
