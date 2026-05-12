@@ -26,7 +26,7 @@ export function Toast({
   actionLabel,
   actionPath,
   actions,
-  duration = 4000,
+  duration = 6000,
 }: ToastProps) {
   const navigate = useNavigate()
 
@@ -64,7 +64,11 @@ export function Toast({
                       onDismiss()
                       navigate(a.path)
                     }}
-                    className="text-sky-400 text-sm font-bold whitespace-nowrap touch-manipulation"
+                    className={`text-sm font-bold whitespace-nowrap touch-manipulation px-3 py-1.5 rounded-lg transition-colors ${
+                      i === 0
+                        ? 'bg-white text-slate-900 hover:bg-slate-100'
+                        : 'bg-transparent text-white border border-white/40 hover:bg-white/10'
+                    }`}
                   >
                     {a.label}
                   </button>
