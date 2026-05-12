@@ -28,6 +28,7 @@ vite.config.ts.timestamp-*
 .claude/
 .superpowers/
 .worktrees/
+docs/superpowers/
 
 # ─── Editor / OS ───────────────────────────────────────────────────────────────
 .DS_Store
