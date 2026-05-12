@@ -268,7 +268,7 @@ export function Settings() {
           >
             <p className="text-sm font-black">Get a backstage pass</p>
             <p className="mt-1 text-xs font-semibold text-bubblegum-cream/80">
-              Sign in to sync your set across devices.
+              Grab a backstage pass to sync your set across devices.
             </p>
           </button>
         )}

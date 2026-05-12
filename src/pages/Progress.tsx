@@ -280,7 +280,7 @@ function EmptyRecords() {
         navigate(
           `/learn/${firstCourse.id}/modules/${firstModule.id}/lessons/${firstLesson.id}`
         ),
-      'Sign in to start lessons'
+      'Grab a backstage pass to play tracks'
     )
   }
 

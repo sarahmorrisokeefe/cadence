@@ -42,10 +42,16 @@ function AppRoutes() {
   // Show loading spinner while checking auth
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f5f3ff] dark:bg-[#0d0f1f] flex items-center justify-center">
+      <div className="min-h-screen bg-bubblegum-cream dark:bg-night-ink flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl text-copper-500 mb-2">♩</div>
-          <p className="text-slate-500 dark:text-slate-400 text-sm">Loading...</p>
+          <div
+            className="text-5xl text-bubblegum-peach mb-2 font-serif leading-none inline-block"
+            style={{ transform: 'rotate(-10deg)' }}
+            aria-hidden="true"
+          >
+            ♩
+          </div>
+          <p className="text-bubblegum-plum-soft text-sm font-bold">Tuning up…</p>
         </div>
       </div>
     )
@@ -60,7 +66,7 @@ function AppRoutes() {
       <Route
         path="/learn/:courseId/modules/:moduleId/lessons/:lessonId"
         element={
-          <RequireAuth message="Sign in to start lessons">
+          <RequireAuth message="Grab a backstage pass to play tracks">
             <Lesson />
           </RequireAuth>
         }
@@ -68,7 +74,7 @@ function AppRoutes() {
       <Route
         path="/practice"
         element={
-          <RequireAuth message="Sign in to take practice quizzes">
+          <RequireAuth message="Grab a backstage pass for Soundcheck">
             <PracticeTest />
           </RequireAuth>
         }
@@ -76,7 +82,7 @@ function AppRoutes() {
       <Route
         path="/review"
         element={
-          <RequireAuth message="Sign in to review weak areas">
+          <RequireAuth message="Grab a backstage pass for your B-sides">
             <WeakAreas />
           </RequireAuth>
         }
@@ -84,7 +90,7 @@ function AppRoutes() {
       <Route
         path="/progress"
         element={
-          <RequireAuth message="Sign in to track your progress">
+          <RequireAuth message="Grab a backstage pass to see your records">
             <Progress />
           </RequireAuth>
         }
@@ -93,7 +99,7 @@ function AppRoutes() {
       <Route
         path="/placement"
         element={
-          <RequireAuth message="Sign in to take the placement test">
+          <RequireAuth message="Grab a backstage pass to take the placement test">
             <PlacementTest />
           </RequireAuth>
         }
@@ -101,7 +107,7 @@ function AppRoutes() {
       <Route
         path="/settings"
         element={
-          <RequireAuth message="Sign in to access settings">
+          <RequireAuth message="Grab a backstage pass to open Backstage">
             <Settings />
           </RequireAuth>
         }
