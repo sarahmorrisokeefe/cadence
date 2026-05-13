@@ -195,11 +195,8 @@ export function PracticeTest() {
       >
         <div className="px-1">
           <p className="text-[28px] font-black leading-tight tracking-[-0.025em] text-bubblegum-plum dark:text-night-fg">
-            <span
-              className="inline-block rounded-lg bg-bubblegum-peach px-2"
-              style={{ transform: 'rotate(-1deg)' }}
-            >
-              Soundcheck
+            <span className="inline-block -rotate-1 rounded-lg bg-bubblegum-peach px-2">
+              Practice
             </span>
           </p>
           <p className="mt-1.5 text-[13px] font-semibold text-bubblegum-plum-soft">
@@ -228,8 +225,7 @@ export function PracticeTest() {
               </p>
             </div>
             <span
-              className="flex h-[60px] w-[60px] flex-shrink-0 items-center justify-center rounded-full bg-bubblegum-plum text-xl font-black text-bubblegum-cream"
-              style={{ transform: 'rotate(-6deg)' }}
+              className="flex h-[60px] w-[60px] flex-shrink-0 -rotate-6 items-center justify-center rounded-full bg-bubblegum-plum text-xl font-black text-bubblegum-cream"
               aria-hidden="true"
             >
               ▶
@@ -286,7 +282,7 @@ export function PracticeTest() {
                   className={`inline-flex items-center gap-1 rounded-full border-2 px-3.5 py-2 text-xs font-extrabold touch-manipulation transition-colors ${
                     on
                       ? `${TONE_BG[tone]} border-bubblegum-plum text-bubblegum-plum`
-                      : 'border-transparent bg-bubblegum-cream-hi text-bubblegum-plum-dim'
+                      : 'border-transparent bg-bubblegum-cream-hi text-bubblegum-plum-dim dark:bg-night-panel-hi dark:text-night-fg-dim'
                   }`}
                 >
                   <span
@@ -318,8 +314,8 @@ export function PracticeTest() {
                     onClick={() => setQuestionCount(n)}
                     className={`flex-1 rounded-full py-2.5 text-sm font-extrabold transition-colors touch-manipulation ${
                       active
-                        ? 'bg-bubblegum-plum text-bubblegum-cream'
-                        : 'bg-bubblegum-cream-hi text-bubblegum-plum'
+                        ? 'bg-bubblegum-plum text-bubblegum-cream dark:bg-bubblegum-butter dark:text-bubblegum-plum'
+                        : 'bg-bubblegum-cream-hi text-bubblegum-plum dark:bg-night-panel-hi dark:text-night-fg'
                     }`}
                   >
                     {n}
@@ -369,8 +365,7 @@ function ModeTile({ name, icon, desc, tone, locked = false, onClick }: ModeTileP
       }`}
     >
       <div
-        className="mb-1 inline-block text-[32px] leading-none"
-        style={{ transform: 'rotate(-6deg)' }}
+        className="mb-1 inline-block -rotate-6 text-[32px] leading-none"
         aria-hidden="true"
       >
         {icon}

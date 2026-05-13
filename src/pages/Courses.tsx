@@ -62,11 +62,8 @@ export function Courses() {
         <div className="px-1">
           <p className="text-[28px] font-black leading-tight tracking-[-0.025em] text-bubblegum-plum dark:text-night-fg">
             Your{' '}
-            <span
-              className="inline-block rounded-lg bg-bubblegum-peach px-2"
-              style={{ transform: 'rotate(-1deg)' }}
-            >
-              setlist
+            <span className="inline-block -rotate-1 rounded-lg bg-bubblegum-peach px-2">
+              lessons
             </span>
           </p>
           <p className="mt-1.5 text-[13px] font-semibold text-bubblegum-plum-soft">
@@ -86,8 +83,8 @@ export function Courses() {
                   onClick={() => setFilter(f.id)}
                   className={`flex-shrink-0 rounded-full px-3.5 py-2 text-xs font-extrabold whitespace-nowrap touch-manipulation transition-colors ${
                     active
-                      ? 'bg-bubblegum-plum text-bubblegum-cream'
-                      : 'bg-white text-bubblegum-plum'
+                      ? 'bg-bubblegum-plum text-bubblegum-cream dark:bg-bubblegum-butter dark:text-bubblegum-plum'
+                      : 'bg-white text-bubblegum-plum dark:bg-night-panel-hi dark:text-night-fg'
                   }`}
                 >
                   {f.label}
@@ -152,8 +149,7 @@ function AlbumCard({ course, pct, tracks, done, onClick }: AlbumCardProps) {
     >
       <div className="flex items-center gap-3.5">
         <div
-          className="flex h-[60px] w-[60px] flex-shrink-0 items-center justify-center rounded-[18px] bg-white text-[32px]"
-          style={{ transform: 'rotate(-4deg)' }}
+          className="flex h-[60px] w-[60px] flex-shrink-0 -rotate-[4deg] items-center justify-center rounded-[18px] bg-white text-[32px]"
           aria-hidden="true"
         >
           {course.icon}

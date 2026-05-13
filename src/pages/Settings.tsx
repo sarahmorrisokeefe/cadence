@@ -95,8 +95,7 @@ export function Settings() {
 
           <div className="mt-3 flex items-center gap-4">
             <div
-              className="flex h-[72px] w-[72px] items-center justify-center rounded-full border-[5px] border-white bg-bubblegum-lavender text-3xl font-black text-bubblegum-plum"
-              style={{ transform: 'rotate(-4deg)' }}
+              className="flex h-[72px] w-[72px] -rotate-[4deg] items-center justify-center rounded-full border-[5px] border-white bg-bubblegum-lavender text-3xl font-black text-bubblegum-plum"
               aria-hidden="true"
             >
               {displayName.charAt(0)}
@@ -166,7 +165,7 @@ export function Settings() {
           <SettingRow
             icon="🌙"
             label="House lights"
-            sub={isDark ? 'Bubblegum night' : 'Bubblegum day'}
+            sub={isDark ? 'Lights down' : 'Lights up'}
             accent="plum"
             right={<Toggle on={isDark} onClick={toggle} />}
           />
@@ -178,18 +177,17 @@ export function Settings() {
             href="https://ko-fi.com/sarahmorrisokeefe"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-3xl bg-bubblegum-cherry/25 p-4 text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation"
+            className="flex items-center gap-3 rounded-3xl bg-bubblegum-cherry/25 p-4 text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation dark:bg-bubblegum-cherry/15 dark:text-night-fg dark:shadow-glow-cherry"
           >
             <span
-              className="inline-block text-4xl leading-none"
-              style={{ transform: 'rotate(-8deg)' }}
+              className="inline-block -rotate-[8deg] text-4xl leading-none"
               aria-hidden="true"
             >
               ☕
             </span>
             <div className="flex-1">
               <p className="text-sm font-black">Drop a tip in the jar</p>
-              <p className="mt-0.5 text-xs font-semibold text-bubblegum-plum-soft">
+              <p className="mt-0.5 text-xs font-semibold text-bubblegum-plum-soft dark:text-night-fg2">
                 Cadence is made by one person. Buy them a coffee on Ko-fi.
               </p>
             </div>
@@ -276,14 +274,13 @@ export function Settings() {
         {/* Footer credit */}
         <div className="mt-2 pb-2 text-center">
           <span
-            className="inline-block font-serif text-2xl leading-none text-bubblegum-peach"
-            style={{ transform: 'rotate(-10deg)' }}
+            className="inline-block -rotate-[10deg] font-serif text-2xl leading-none text-bubblegum-peach"
             aria-hidden="true"
           >
             ♩
           </span>
           <p className="mt-1.5 text-[11px] font-bold text-bubblegum-plum-dim">
-            Cadence · Bubblegum
+            Cadence
           </p>
           <p className="mt-1 text-[11px] font-semibold text-bubblegum-plum-dim">
             Built with love by{' '}
@@ -291,7 +288,7 @@ export function Settings() {
               href="https://okeefesarah.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-black text-bubblegum-plum"
+              className="font-black text-bubblegum-plum dark:text-bubblegum-butter dark:drop-shadow-glow-butter"
             >
               Sarah O'Keefe
             </a>
@@ -358,8 +355,7 @@ function SettingRow({
       className={`flex w-full items-center gap-3 px-3.5 py-3.5 text-left ${interactive}`}
     >
       <div
-        className={`flex h-[38px] w-[38px] flex-shrink-0 items-center justify-center rounded-xl text-xl ${ACCENT_BG[accent]} ${accent === 'plum' ? 'text-bubblegum-cream' : 'text-bubblegum-plum'}`}
-        style={{ transform: 'rotate(-4deg)' }}
+        className={`flex h-[38px] w-[38px] flex-shrink-0 -rotate-[4deg] items-center justify-center rounded-xl text-xl ${ACCENT_BG[accent]} ${accent === 'plum' ? 'text-bubblegum-cream' : 'text-bubblegum-plum'}`}
         aria-hidden="true"
       >
         {icon}

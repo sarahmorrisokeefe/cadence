@@ -49,25 +49,104 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
 
-  /* Dark mode safety net: when a card flips from white → night-panel, lighten
-     any descendant plum text so it stays readable. Pastel-bg cards aren't
-     affected (they're not bg-night-panel) so their plum text stays plum. */
-  .dark .bg-night-panel .text-bubblegum-plum,
-  .dark .bg-night-panel-hi .text-bubblegum-plum,
-  .dark .bg-night-panel2 .text-bubblegum-plum {
-    color: #fff7e0;
-  }
-  .dark .bg-night-panel .text-bubblegum-plum-soft,
-  .dark .bg-night-panel-hi .text-bubblegum-plum-soft,
-  .dark .bg-night-panel2 .text-bubblegum-plum-soft {
-    color: #d8c8e8;
-  }
-  .dark .bg-night-panel .text-bubblegum-plum-dim,
-  .dark .bg-night-panel-hi .text-bubblegum-plum-dim,
-  .dark .bg-night-panel2 .text-bubblegum-plum-dim {
-    color: #6e5e80;
-  }
+/* ── Dark-mode ink contrast ────────────────────────────────────────────
+   Strategy: flip every `.text-bubblegum-plum*` to its night.fg cousin
+   by default, then revert on bright pastel surfaces (where dark ink
+   reads better than cream).
+
+   These rules live OUTSIDE @layer utilities on purpose. Inside the
+   utilities layer Tailwind's JIT was generating dark variants of my
+   custom selectors (so `.dark .text-bubblegum-plum` was also being
+   emitted as `.dark .dark\:text-bubblegum-plum`), which then overrode
+   the explicit `dark:text-bubblegum-plum` utility on PrimaryButtons
+   and broke their plum-on-butter text. Outside the layer, Tailwind
+   leaves these as plain custom CSS.
+
+   Two revert cases per tone:
+   1) Descendant of a pastel ancestor — only when the descendant
+      doesn't carry its own bg. Pills/chips/buttons inside a pastel
+      card own their surface and shouldn't be lifted by the cascade.
+   2) Self — same element carries both a pastel bg and the text class
+      (ModeTile mint, PrimaryButton butter swap, performer card, etc.).
+      `:not(bg)` is intentionally omitted on the self selector.
+
+   `[class~]` whole-word match on the pastel ancestor means opacity-
+   modified bgs like `bg-bubblegum-cherry/15` — which composite to a
+   dark surface in night mode — don't trigger the revert. */
+.dark .text-bubblegum-plum      { color: #fff7e0; }
+.dark .text-bubblegum-plum-soft { color: #d8c8e8; }
+.dark .text-bubblegum-plum-dim  { color: #6e5e80; }
+
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  )
+  .text-bubblegum-plum:not([class*="bg-"]),
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  ).text-bubblegum-plum {
+  color: #3a224f;
+}
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  )
+  .text-bubblegum-plum-soft:not([class*="bg-"]),
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  ).text-bubblegum-plum-soft {
+  color: #6b4a85;
+}
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  )
+  .text-bubblegum-plum-dim:not([class*="bg-"]),
+.dark
+  :is(
+    [class~="bg-bubblegum-butter"],
+    [class~="bg-bubblegum-peach"],
+    [class~="bg-bubblegum-mint"],
+    [class~="bg-bubblegum-sky"],
+    [class~="bg-bubblegum-lavender"],
+    [class~="bg-bubblegum-pink"],
+    [class~="bg-bubblegum-cherry"]
+  ).text-bubblegum-plum-dim {
+  color: #9d85b6;
 }
 
 /* ── A11y: motion + contrast preferences ─────────────────────────────────── */
