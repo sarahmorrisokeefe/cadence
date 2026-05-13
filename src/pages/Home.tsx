@@ -521,7 +521,7 @@ function SignedInHome() {
             <button
               type="button"
               onClick={() => gate(() => navigate('/review'), 'Grab a backstage pass for your B-sides')}
-              className="flex w-full items-center gap-3 rounded-3xl bg-bubblegum-cherry/20 p-3.5 text-left transition-transform active:scale-[0.99] touch-manipulation"
+              className="flex w-full items-center gap-3 rounded-3xl bg-bubblegum-cherry/20 p-3.5 text-left transition-transform active:scale-[0.99] touch-manipulation dark:bg-bubblegum-cherry/15 dark:shadow-glow-cherry"
             >
               <span
                 className="inline-block -rotate-6 text-3xl leading-none"
@@ -530,7 +530,7 @@ function SignedInHome() {
                 🎯
               </span>
               <div className="flex-1">
-                <p className="text-sm font-black text-bubblegum-plum">
+                <p className="text-sm font-black text-bubblegum-plum dark:text-night-fg">
                   {weakAreas.length} track{weakAreas.length !== 1 ? 's' : ''} to rehearse
                 </p>
                 <div className="mt-1.5 flex flex-wrap gap-1">

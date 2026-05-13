@@ -177,7 +177,7 @@ export function Settings() {
             href="https://ko-fi.com/sarahmorrisokeefe"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-3xl bg-bubblegum-cherry/25 p-4 text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation"
+            className="flex items-center gap-3 rounded-3xl bg-bubblegum-cherry/25 p-4 text-bubblegum-plum transition-transform active:scale-[0.99] touch-manipulation dark:bg-bubblegum-cherry/15 dark:text-night-fg dark:shadow-glow-cherry"
           >
             <span
               className="inline-block -rotate-[8deg] text-4xl leading-none"
@@ -187,7 +187,7 @@ export function Settings() {
             </span>
             <div className="flex-1">
               <p className="text-sm font-black">Drop a tip in the jar</p>
-              <p className="mt-0.5 text-xs font-semibold text-bubblegum-plum-soft">
+              <p className="mt-0.5 text-xs font-semibold text-bubblegum-plum-soft dark:text-night-fg2">
                 Cadence is made by one person. Buy them a coffee on Ko-fi.
               </p>
             </div>
