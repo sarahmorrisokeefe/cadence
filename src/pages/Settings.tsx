@@ -288,7 +288,7 @@ export function Settings() {
               href="https://okeefesarah.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-black text-bubblegum-plum"
+              className="font-black text-bubblegum-plum dark:text-bubblegum-butter dark:drop-shadow-glow-butter"
             >
               Sarah O'Keefe
             </a>
