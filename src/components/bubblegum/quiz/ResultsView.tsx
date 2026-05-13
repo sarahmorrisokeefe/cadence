@@ -267,7 +267,7 @@ function StatTile({
   return (
     <div className={`rounded-[18px] ${bg} p-3 text-center`}>
       <Mono size="xs">{label}</Mono>
-      <p className="mt-1 inline-block text-[22px] font-black leading-none tracking-[-0.02em] tabular-nums text-bubblegum-plum">
+      <p className="mt-1 text-[22px] font-black leading-none tracking-[-0.02em] tabular-nums text-bubblegum-plum">
         {value}
       </p>
     </div>
