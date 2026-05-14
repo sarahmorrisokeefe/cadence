@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "ios:build": "vite build && npx cap sync ios",
-    "ios:open": "npx cap open ios"
+    "ios:open": "npx cap open ios",
+    "release:ios": "bash scripts/release-ios.sh"
   },
   "dependencies": {
     "@capacitor/cli": "^8.2.0",
